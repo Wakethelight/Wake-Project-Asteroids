@@ -3,18 +3,27 @@
 # throughout this file
 import pygame
 from constants import *
+from circleshape import CircleShape
+from player import Player
 
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    clock = pygame.time.Clock()
+    dt = 0
+    Player(x = SCREEN_WIDTH // 2, y = SCREEN_HEIGHT // 2)
+
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill((0, 0, 0))
+        Player.draw(screen)
+        screen.fill("black") 
         pygame.display.flip()
+
+        dt = clock.tick(60) / 1000  # Limit to 60 frames per second
 
 
 if __name__ == "__main__":
